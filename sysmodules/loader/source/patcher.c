@@ -869,7 +869,13 @@ void patchCode(u64 progId, u16 progVer, u8 *code, u32 size, u32 textSize, u32 ro
         if(!patcherApplyCodeBpsPatch(progId, code, size)) goto error;
         if(!applyCodeIpsPatch(progId, code, size)) goto error;
 
-        if(true)//(u32)((progId >> 0x20) & 0xFFFFFFEDULL) == 0x00040000)
+        if(progId == 0x0004003000008F02LL || //USA Home Menu
+            progId == 0x0004003000008202LL || //JPN Home Menu
+            progId == 0x0004003000009802LL || //EUR Home Menu
+            progId == 0x000400300000A902LL || //KOR Home Menu
+            progId == 0x000400300000A102LL || //CHN Home Menu
+            progId == 0x000400300000B102LL || //TWN Home Menu
+            (u32)((progId >> 0x20) & 0xFFFFFFEDULL) == 0x00040000)
         {
             u8 mask,
                regionId,
